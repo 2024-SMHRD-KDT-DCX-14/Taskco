@@ -8,7 +8,7 @@ public class ViewController {
 
 	@RequestMapping("/taskco")
 	public String taskco() {
-		return "MainPage";
+		return "login";
 	}
 	
 }
