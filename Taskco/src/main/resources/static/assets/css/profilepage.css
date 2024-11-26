@@ -1,0 +1,84 @@
+@charset "EUC-KR";
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f3f3f3;
+}
+.logo {
+    font-size: 1px;
+    font-weight: bold;
+    color: #001a50;
+    margin-bottom: 20px;
+}
+.contact-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.contact-icons a img {
+    width: 25px;
+    height: 25px;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    max-width: 800px;
+    height: 80%;
+    max-height: 400px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.profile {
+    width: 40%;
+    background-color: #f3f3f3;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profile img {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+.profile-name {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.profile-info {
+    margin-top: 15px;
+    width: 80%;
+    height: 100px;
+    background-color: #ddd;
+    border-radius: 8px;
+}
+.details {
+    width: 60%;
+    padding: 20px;
+    background-color: #e0e0f8;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.button {
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+}
