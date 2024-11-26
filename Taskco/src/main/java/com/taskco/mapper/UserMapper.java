@@ -13,4 +13,6 @@ public interface UserMapper {
 	
 	// 로그인
 	public User login(User user);
+	
+	public User loginWithEmail(String email); // 이메일 기반 사용자 조회
 }
