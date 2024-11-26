@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taskco.mapper.KanbanMapper">
+
+
+<!-- 칸반보드 리스트 가져오기 -->
+<select id="list" resultType="com.taskco.entity.Kanban">
+	select *
+	from TB_KANBAN
+	where P_IDX = #{pIdx}
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
