@@ -11,4 +11,8 @@ public interface KanbanMapper {
 
 	public List<Kanban> list(String pIdx);
 	
+	public int updateKanban(List<Kanban> list);
+	
+	
+	
 }

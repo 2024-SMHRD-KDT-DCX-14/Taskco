@@ -34,16 +34,6 @@
 			<div class="swim-lane" id="todo-lane">
 				<h3 class="heading">할 일</h3>
 				<!-- task 카드 -->
-				<div class="task" draggable="true">
-					<p class="task-head">할 일 제목</p>
-					<hr>
-					<p class="task-date">시작일 ~ 완료일</p>
-					<p class="task-performer">업무 수행인원 명단</p>
-					<button class="task-view">상세보기</button>
-					<!-- 클릭하면 내용 볼 수 있게 연결 -->
-					<button class="task-update">인원 수정</button>
-					<button class="task-delete">삭제</button>
-				</div>
 
 				<!-- <p class="task" draggable="true">할 일 2</p>
         <p class="task" draggable="true">할 일 3</p> -->

@@ -4,6 +4,13 @@ const todoLane = document.getElementById("todo-lane");
 const addCardBtn = document.getElementById("addCard");
 
 
+// 테스트용 세션 설정. --> 나중에 제거
+sessionStorage.setItem('PJ_ID', '27B74844-1F13-48A8-E060-16AC02006CBF');
+
+// 세션에서 값 가져오기
+const pjidx = sessionStorage.getItem('PJ_ID');
+
+
 addCardBtn.addEventListener("click", (e)=>{
 
     e.preventDefault(); // 기본 폼 제출 동작 방지
@@ -18,6 +25,19 @@ addCardBtn.addEventListener("click", (e)=>{
     const newTask = document.createElement("div");
     newTask.classList.add("task");
     newTask.setAttribute("draggable", "true")
+
+		// 카드에 data-*로 정보를 추가. 
+	newTask.setAttribute("data-idx", "null");
+	newTask.setAttribute("data-title", value);
+	newTask.setAttribute("data-content", "");
+	newTask.setAttribute("data-stDt", "");
+	newTask.setAttribute("data-edDt", "");
+	newTask.setAttribute("data-status", "todo");
+	newTask.setAttribute("data-pIdx", pjidx);
+	newTask.setAttribute("data-order", "");
+	newTask.setAttribute("data-color", "");
+
+
 
     
     newTask.innerHTML = `
@@ -46,3 +66,5 @@ addCardBtn.addEventListener("click", (e)=>{
     input.value = ""
 
 })
+
+

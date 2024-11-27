@@ -6,7 +6,7 @@
 // 0. 매개변수가 되는 프로젝트 고유번호를 가져오기.
 // 세션에서 가져옴. 
 // 테스트용 세션 설정. --> 나중에 제거
-sessionStorage.setItem('PJ_ID', '27B74844-1F13-48A8-E060-16AC02006CBF');
+sessionStorage.setItem('PJ_ID', '27DF12F8-F1EC-FFCF-E060-16AC02003201');
 
 // 세션에서 값 가져오기
 const pjid = sessionStorage.getItem('PJ_ID');
@@ -33,6 +33,7 @@ async function reqKanban(pjid) { //db로 요청. callback 자료는 List 형태�
 	//get으로 프로젝트 고유번호 넣어서 보내기.
 	const res = await axios.get(url + "?PJ_ID=" + pjid)
 	let tasks = res.data;
+	
 
 	// 상태별 리스트 초기화
 	let kanList = [];
@@ -47,20 +48,18 @@ async function reqKanban(pjid) { //db로 요청. callback 자료는 List 형태�
 			stDt: task.stDt,   // 칸반 카드 시작일
 			edDt: task.edDt,   // 칸반 카드 종료일
 			status: task.kanStatus, // 칸반 카드 상태
-			pIdx: task.pIdx,  // 프로젝트 인덱스
+			pIdx: task.pidx,  // 프로젝트 인덱스 - 이유는 모르겠지만 스프링 필드명이 pIdx인데 pidx로 넘어온다. 
 			order: task.kanOrder,  // 칸반카드 위치
 			color: task.kanColor  // 칸반카드 색깔
 		};
-
 
 		// 카드의 정보를 모조리 담는 kanList
 		kanList.push(data)
 
 
 	}); // 반복문 끝
-
-	console.log(kanList);
-
+	
+	console.log(kanList)
 	// 밖에서 사용할 수 있게 해주는 콜백 함수. 
 	return kanList;
 
@@ -69,13 +68,13 @@ async function reqKanban(pjid) { //db로 요청. callback 자료는 List 형태�
 
 /* 카드가 드래그 가능하게 만들어주는 함수. */
 function dragEnable(card) {
-	/* 드래그를 시작할 때 색깔 변화 */
+	/* 드래그를 시작할 때 이벤트 */
 	card.addEventListener("dragstart", () => {
 		card.classList.add("is-dragging");
 
 
 	});
-	/* 드래그를 종료할때 색깔 변화 */
+	/* 드래그를 종료할때 이벤트 */
 	card.addEventListener("dragend", () => {
 		card.classList.remove("is-dragging");
 	});
@@ -91,7 +90,22 @@ function addCard(data) {
 	const card = document.createElement("div") // div 요소 생성
 	card.classList.add("task"); //card의 클래스를 task로 설정
 	card.setAttribute("draggable", "true") // card의 draggable 속성을 true로 설정함. 
-
+	
+	
+	
+	// 카드에 data-*로 정보를 추가. 
+	card.setAttribute("data-idx", data.idx);
+	card.setAttribute("data-title", data.title);
+	card.setAttribute("data-content", data.content);
+	card.setAttribute("data-stDt", data.stDt);
+	card.setAttribute("data-edDt", data.edDt);
+	card.setAttribute("data-status", data.status);
+	card.setAttribute("data-pIdx", data.pIdx);
+	card.setAttribute("data-order", data.order);
+	card.setAttribute("data-color", data.color);
+	
+	
+	
 	//수행인원 처리는 고민 해볼 것. 
 	card.innerHTML =
 
