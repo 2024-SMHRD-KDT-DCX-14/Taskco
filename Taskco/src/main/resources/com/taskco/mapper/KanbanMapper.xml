@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taskco.mapper.KanbanMapper">
+
+
+<!-- 칸반보드 리스트 가져오기 -->
+<select id="list" resultType="com.taskco.entity.Kanban">
+	select *
+	from TB_KANBAN
+	where P_IDX = #{pIdx}
+</select>
+
+
+<!-- 칸반보드로 리스트를 보내기-->
+<insert id="updateKanban" parameterType="list"> <!-- 전달된 list를 foreach로 반복. 자바 자료형이 List지만 list로 적음.-->
+	<!-- 삽입하기 전에 기존값 삭제 : pidx를 불러와서 -->
+		INSERT ALL
+		<foreach collection="list" item = "kanban" > <!-- item에서 자료형을 지정함. 경로가 없어도 자동으로 지정됨.  -->
+		INTO TB_KANBAN(
+			
+			KAN_TITLE,
+			KAN_CONTENT,
+			ST_DT,
+			ED_DT,
+			KAN_STATUS,
+			P_IDX,
+			KAN_COLOR
+		)
+		
+		VALUES(
+		
+			#{kanban.kanTitle, jdbcType=VARCHAR},
+			#{kanban.kanContent, jdbcType=VARCHAR},
+			#{kanban.stDt, jdbcType=DATE},
+			#{kanban.edDt, jdbcType=DATE},
+			#{kanban.kanStatus, jdbcType=VARCHAR},
+			#{kanban.pIdx, jdbcType=VARCHAR},
+			#{kanban.kanColor, jdbcType=VARCHAR}
+		
+		)
+	</foreach>
+	   SELECT 1 FROM DUAL
+
+	
+</insert>
+
+
+
+
+
+
+
+
+
+</mapper>

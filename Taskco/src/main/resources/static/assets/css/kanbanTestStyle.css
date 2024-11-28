@@ -1,0 +1,141 @@
+
+*{
+    padding : 0;
+    margin : 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+}
+
+*::-webkit-scrollbar{
+    display: noneS;
+
+}
+
+
+.board{
+    width: 90%;
+    height: 800px;
+    overflow: scroll;
+
+    background-color: aliceblue;
+}
+
+/* 카드 추가 파트 */
+#todo-form{
+
+    padding: 32px 32px 0;
+}
+
+/* 카드 추가 입력창  */
+#todo-form input{
+    padding : 12px;
+    margin-right: 12px;
+    width: 225px;
+
+    border-radius: 4px;
+    border : none;
+
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.25);
+    background: white;
+
+    font-size: 14px;
+    outline: none;
+
+} 
+
+/* 카드 추가 버튼 */
+#todo-form button{
+    padding: 12px 32px;
+
+    border-radius: 4px;
+    /* 테두리 */
+    border: none;
+    
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.25);
+    background: #ffffffff;
+    color: black;
+
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* 보드  */
+.kanbanBoard{
+    display: flex;
+    align-items: flex-start;
+    justify-content: start;
+    /* 열 별 간격 */
+    gap: 4px;
+
+    padding: 24px 32px;
+
+    overflow: scroll;
+    height: 100%;
+
+}
+
+/* 열 제목 */
+.heading{
+font-size: 22px;
+font-weight: bold;
+margin-bottom: 8px;
+
+}
+
+/* 열 속성 */
+.swim-lane{
+    display: flex;
+    flex-direction: column;
+    /* 카드 별 간격 */
+    gap: 12px;
+
+    background: #f4f4f4;
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.25);
+    padding: 12px;
+    border-radius: 4px;
+    width: 300px;
+    min-height: 120px;
+
+    flex-shrink: 0;
+
+}
+
+/* 할 일 카드 */
+.task{
+
+    background: white;
+    color: black;
+    box-shadow: 0px 3px 5px rgba(0,0,0,0.25);
+    
+    padding: 12px;
+    border-radius: 4px;
+
+    font-size: 16px;
+    cursor: move;
+
+}
+
+/* 할 일 카드 제목 */
+.task-head{
+    font-weight: bold;
+    
+    font-size: 20px;
+
+}
+
+/* 할 일 카드 내용 */
+
+
+
+/* 드래그 시 양식  */
+.is-dragging{
+    scale: 1.05;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.25);
+    background : rgb(50, 50, 50);
+
+}
