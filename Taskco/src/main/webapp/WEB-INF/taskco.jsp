@@ -73,11 +73,20 @@ body {
 							class="button__icon fas fa-chevron-right"></i>
 					</button>
 				</form>
+				<!--회원가입 부분 -->
+				<form  class="login" action="goJoin" method="post">
+					<button type="submit" class="button login__submit">
+						<span class="button__text">회원가입</span> <i
+							class="button__icon fas fa-chevron-right"></i>
+					</button>
+				</form>
+
 				<!--구글 로그인 버튼 부분  -->
 				<div class="social_login">
 					<h3>소셜 계정으로 로그인</h3>
 					<!-- Google Identity Services 초기화 -->
-					<div id="g_id_onload" data-client_id="938786367795-m2u4s4j4u6nhriskq4skss27m0dl82va.apps.googleusercontent.com"
+					<div id="g_id_onload"
+						data-client_id="938786367795-m2u4s4j4u6nhriskq4skss27m0dl82va.apps.googleusercontent.com"
 						data-login_uri="/googleLogin" data-auto_prompt="false"></div>
 					<div class="g_id_signin" data-type="standard" data-size="large"></div>
 				</div>
@@ -85,16 +94,6 @@ body {
 		</div>
 	</div>
 
-	<!--회원가입 부분 -->
-	<div>
-		<form action="goJoin" method="post">
-			<button type="submit" class="button login__submit">
-				<span class="button__text">회원가입</span> <i
-					class="button__icon fas fa-chevron-right"></i>
-			</button>
-		</form>
-
-	</div>
 
 	<!-- Google Identity Services 초기화 -->
 	<!-- 	<div id="g_id_onload"

@@ -4,8 +4,7 @@
 
 	<!--회원가입 쿼리 -->
 	<insert id="join" parameterType="com.taskco.entity.User">
-		insert into tb_user(email, pw,
-		name, status_msg, profile_img, join_dt)
+		insert into tb_user(email, pw, name, status_msg, profile_img, join_dt)
 		values(
 		#{email},
 		#{pw},
@@ -30,11 +29,19 @@
 	</select>
 
 	<!-- google API 부분 -->
-	<select id="loginWithEmail" parameterType="string"
+	<select id="loginWithEmail" parameterType="com.taskco.entity.User"
 		resultType="com.taskco.entity.User">
-		SELECT * FROM tb_user WHERE email = #{email}
+		select * from tb_user where email = #{email,jdbcType=VARCHAR}
 	</select>
-
+	
+	<!-- email 중복 처리 -->
+	<!-- 하나의 변수만 조회: resultType-->
+	<!-- 대소문자 구분 없이 중복 처리 -->
+	<select id="check" resultType="com.taskco.entity.User">
+		select * from tb_user
+		where LOWER(email)=LOWER(#{email})
+	
+	</select>
 
 
 

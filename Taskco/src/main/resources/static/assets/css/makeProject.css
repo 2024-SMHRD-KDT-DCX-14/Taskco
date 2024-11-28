@@ -1,29 +1,123 @@
 @charset "UTF-8";
 
 /* 모달 스타일 */
-        #projectModal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-        
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 30%;
-        }
+       
+.modal {
+	position: fixed;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+}
 
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+.modal_body {
+	position: relative;
+	width: 400px;
+	height: 300px;
+	padding: 20px;
+	text-align: center;
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 2px 3px rgba(34, 36, 38, 0.15);
+}
+
+.close-btn {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin-top: 150px;
+	cursor: pointer;
+	color: #007bff;
+}
+       
+        
+.modal_body2 {
+	position: relative;
+	width: 400px;
+	height: 400px;
+	padding: 20px;
+	text-align: left;
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 2px 3px rgba(34, 36, 38, 0.15);
+}
+
+.close-btn2 {
+	margin-top: 150px;
+	cursor: pointer;
+]	color: #007bff;
+}
+/* 프로젝트 생성/추가 버튼 고정 위치 */
+.button.btn-open-modal2,
+.button.btn-open-modal3,
+#text {
+	bottom: 0;
+	margin-top: 10px;
+	display: block;
+}
+.btn-open-modal2{
+	position:absolute;
+	right: 0;
+	background: linear-gradient(to left, #a897d3, #413941);
+}
+
+#text{
+	position:absolute;
+	left: 50%;
+	transform: translate(-50%, -50%);
+            
+}
+
+.btn-open-modal3{
+	position:absolute;
+	left: 0;
+	background: linear-gradient(to right, #a897d3, #413941);
+}
+
+#edit_icon{
+	width: 20px;
+    height: 20px
+}
+        
+#project_control{
+	position:absolute;
+    bottom: 0;
+    background-color: white;
+    width: 100%;
+}
+
+
+#form_text{
+	display: flex; /* Flexbox 활성화 */
+    flex-direction: column; /* 수직 정렬 */
+    gap: 10px; /* 간격 설정 */
+}   
+#form_text * {
+	width: 100%;
+    justify-content: flex-start;
+
+}   
+#form_text input{
+	border-radius: 10px;
+    border-color: #ffffff;
+}
+
+#form_btn{
+	width: 100%; 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#form_btn * {
+	text-align: center;
+    width: 20%;
+    font-size: medium;
+
+
+}
