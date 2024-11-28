@@ -98,3 +98,18 @@ function addProject() {
    projectNameInput.value = "";
    closeModal('modal-project');
 }
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+

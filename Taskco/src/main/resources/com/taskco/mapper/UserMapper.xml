@@ -42,6 +42,15 @@
 		where LOWER(email)=LOWER(#{email})
 	
 	</select>
+	
+	
+	<!-- 프로필 수정  -->
+	<update id="update" parameterType="com.taskco.entity.User">
+		update tb_user
+		set name=#{name}, status_msg=#{status_msg}, profile_img=#{profile_img}, pw=#{pw}
+		where email=#{email}
+		
+	</update>
 
 
 

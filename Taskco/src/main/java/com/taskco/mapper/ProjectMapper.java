@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.taskco.entity.Join;
 import com.taskco.entity.Project;
+import com.taskco.entity.TeamMate;
 import com.taskco.entity.User;
 
 @Mapper
@@ -19,10 +20,11 @@ public interface ProjectMapper {
     
     public int createJoin(Project project);
     
-   public Project view(String idx);
+   public Project view(String p_idx);
 
    public int join(Join Join);
-
-
-
+   
+   //ProjectMain 에서 팀원 띄울때 사용하기 위함
+   
+   public List<TeamMate> teamMate(Project project);
 }

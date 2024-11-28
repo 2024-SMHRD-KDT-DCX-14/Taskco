@@ -20,4 +20,7 @@ public interface UserMapper {
 	// email 중복처리(회원가입시)
 	public User check(String email);
 	
+	// 프로필 수정
+	public int update(User user);
+	
 }

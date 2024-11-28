@@ -1,5 +1,9 @@
 package com.taskco.controller;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 
 import java.nio.file.Paths;
@@ -42,11 +46,12 @@ public class UserController {
 		return "taskco";
 	}
 
-	//회원가입 페이지
+	// 회원가입 페이지
 	@RequestMapping("/goJoin")
 	public String goJoin() {
 		return "join";
 	}
+	
 
 	// 외부 사진 폴더 가져오기
 	@Value("${save.path}") // application.properties에 선언된 외부 폴더
@@ -168,6 +173,72 @@ public class UserController {
 	private String redirectWithMessage(String url, String message, Model model) {
 		model.addAttribute("message", message);
 		return "redirect:" + url;
+	}
+
+	// ========================================================================
+	// 프로필 수정(회원 수정)
+
+	// 외부 사진 폴더 가져오기=> 회원가입 부분에 있음
+
+	@RequestMapping("/update")
+	public String update(User user, HttpSession session, MultipartFile file) throws UnsupportedEncodingException {
+
+		// 1. 데이터 수집
+		// 1-1. 세션 가져오기
+		User currentUser = (User) session.getAttribute("user");
+		// 세션 없는 경우 로그인 페이지로 리다이렉트
+		if (currentUser == null) {
+	        return "redirect:/login"; 
+	    }
+		
+		// 1-2. 세션에서 이메일 꺼내오기
+		String email = currentUser.getEmail();
+
+		// 1-3. 프로필 이미지 파일 저장
+		// save.path는 회원가입 메소드 위에서 불러옴
+
+		// 1) 앞에 랜덤한 문자열을 붙여서, 파일 이름 중복 방지
+		// UUID: 랜덤 문자 만들기 위한 기능
+		String uuid = UUID.randomUUID().toString();
+		System.out.println(uuid); //uuid 디버깅
+		// 2) 전체 경로 만들기(폴더 경로 + 파일 이름)
+		String originalFilename = file.getOriginalFilename(); // 원본 파일 이름
+		String encodedFilename = URLEncoder.encode(originalFilename, StandardCharsets.UTF_8.toString()); // 인코딩
+		
+		
+		
+		System.out.println("Encoded filename: " + encodedFilename); // 인코딩된 파일 이름 디버깅
+		
+		String filename = uuid + encodedFilename;
+		System.out.println("filename: "+filename); //filename 디버깅
+		Path path = Paths.get(savePath + filename);
+		System.out.println("path: "+path); //path 디버깅
+		// 3) 저장
+		try {
+			file.transferTo(path);
+			user.setProfile_img(filename);
+			System.out.println("profile img: "+user.getProfile_img()); //dto에 저장된 프로필사진 파일명 디버깅
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		// user에 프로필사진 저장
+
+		// 2. 기능 실행
+		// email을 세션에서 가져와 user객체에 저장
+		user.setEmail(email);
+		// user객체 업데이트
+		int cnt= mapper.update(user);
+		System.out.println(cnt);
+		
+		if (cnt>0) {
+			// 세션에 변경된 user객체의 name, pw, status_msg, profile_img 저장 => 세션도 변경
+			session.setAttribute("user", user); //세션 업데이트
+		}
+
+		// 3. view 이동
+		return "redirect:/loggedin";
+
 	}
 
 }
