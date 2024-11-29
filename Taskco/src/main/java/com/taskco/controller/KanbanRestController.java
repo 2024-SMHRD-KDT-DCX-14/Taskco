@@ -37,9 +37,10 @@ public class KanbanRestController {
 
 		// 2. 기능 실행
 		try {
-			int cnt = mapper.updateKanban(list);
+			int cntD = mapper.deleteKanban(list);
+			int cntU = mapper.updateKanban(list);
 
-			if (cnt > 0) {
+			if (cntU > 0) {
 				System.out.println("update t");
 			} else {
 				System.out.println("update f");
@@ -48,7 +49,7 @@ public class KanbanRestController {
 			e.printStackTrace();
 		}
 
-		return "update comlite";
+		return "update complite";
 	}
 
 }

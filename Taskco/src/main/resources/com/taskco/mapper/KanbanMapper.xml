@@ -4,20 +4,43 @@
 
 
 <!-- 칸반보드 리스트 가져오기 -->
+<!-- 날짜는 TO_CHAR함수를 사용해서 문자열로 변환해서 가져옴-->
 <select id="list" resultType="com.taskco.entity.Kanban">
-	select *
+	select KAN_IDX,
+		   KAN_TITLE,
+			KAN_CONTENT,
+			TO_CHAR(ST_DT, 'YYYY-MM-DD') AS ST_DT,
+        	TO_CHAR(ED_DT, 'YYYY-MM-DD') AS ED_DT, 
+			KAN_STATUS,
+			P_IDX,
+			KAN_ORDER,
+			KAN_COLOR
+			
 	from TB_KANBAN
 	where P_IDX = #{pIdx}
 </select>
 
 
-<!-- 칸반보드로 리스트를 보내기-->
+
+<!-- 칸반보드 저장 -->
+<!-- 1. 모든 P_IDX에 대한 기존 데이터를 한 번에 삭제 -->
+
+<delete  id="deleteKanban" parameterType="list">
+ DELETE FROM TB_KANBAN
+    WHERE P_IDX IN 
+    <foreach collection="list" item="kanban" open="(" separator="," close=")">
+        #{kanban.pIdx}
+    </foreach>
+</delete>
+   
+<!--2. 불러온 칸반보드 데이터 저장-->
 <insert id="updateKanban" parameterType="list"> <!-- 전달된 list를 foreach로 반복. 자바 자료형이 List지만 list로 적음.-->
 	<!-- 삽입하기 전에 기존값 삭제 : pidx를 불러와서 -->
 		INSERT ALL
 		<foreach collection="list" item = "kanban" > <!-- item에서 자료형을 지정함. 경로가 없어도 자동으로 지정됨.  -->
 		INTO TB_KANBAN(
 			
+			KAN_IDX,
 			KAN_TITLE,
 			KAN_CONTENT,
 			ST_DT,
@@ -28,20 +51,30 @@
 		)
 		
 		VALUES(
-		
-			#{kanban.kanTitle, jdbcType=VARCHAR},
-			#{kanban.kanContent, jdbcType=VARCHAR},
-			#{kanban.stDt, jdbcType=DATE},
-			#{kanban.edDt, jdbcType=DATE},
-			#{kanban.kanStatus, jdbcType=VARCHAR},
-			#{kanban.pIdx, jdbcType=VARCHAR},
-			#{kanban.kanColor, jdbcType=VARCHAR}
+			
+			#{kanban.kanIdx, jdbcType=VARCHAR},
+            #{kanban.kanTitle, jdbcType=VARCHAR},
+            #{kanban.kanContent, jdbcType=VARCHAR},
+            <if test="kanban.stDt != null and kanban.stDt != 'null'"> <!--문자형 null로 받으면 NULL로 수정해서 집어 넣음.-->
+                TO_DATE(#{kanban.stDt, jdbcType=VARCHAR}, 'YYYY-MM-DD')
+            </if>
+            <if test="kanban.stDt == null or kanban.stDt == 'null'">
+                NULL
+            </if>,
+            <if test="kanban.edDt != null and kanban.edDt != 'null'">
+                TO_DATE(#{kanban.edDt, jdbcType=VARCHAR}, 'YYYY-MM-DD')
+            </if>
+            <if test="kanban.edDt == null or kanban.edDt == 'null'">
+                NULL
+            </if>,
+            #{kanban.kanStatus, jdbcType=VARCHAR},
+            #{kanban.pIdx, jdbcType=VARCHAR},
+            #{kanban.kanColor, jdbcType=VARCHAR}
 		
 		)
 	</foreach>
 	   SELECT 1 FROM DUAL
 
-	
 </insert>
 
 

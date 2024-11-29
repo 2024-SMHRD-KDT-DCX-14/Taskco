@@ -1,5 +1,6 @@
 package com.taskco.entity;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
@@ -9,7 +10,7 @@ import lombok.NonNull;
 public class Kanban {
 	
     // 칸반 식별자 
-    private Double kanIdx;
+    private String kanIdx;
 
     // 칸반 제목 
     private String kanTitle;

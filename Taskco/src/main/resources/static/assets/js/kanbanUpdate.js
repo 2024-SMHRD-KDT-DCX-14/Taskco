@@ -37,8 +37,8 @@ function updateKanban() {
 			kanIdx: taskElement.dataset.idx, // 칸반카드 인덱스
 			kanTitle: taskElement.dataset.title, // 칸반카드 제목
 			kanContent: taskElement.dataset.content, // 칸반카드 내용
-			stDt: taskElement.dataset.stDt,   // 칸반 카드 시작일
-			edDt: taskElement.dataset.edDt,   // 칸반 카드 종료일
+			stDt: taskElement.dataset.stdt,   // 칸반 카드 시작일
+			edDt: taskElement.dataset.eddt,   // 칸반 카드 종료일
 			kanStatus: taskElement.dataset.status, // 칸반 카드 상태
 			pIdx: pjid,  // 프로젝트 인덱스 -- 세션에서 값을 가져와서 집어 넣기.
 			kanOrder: taskElement.dataset.order,  // 칸반카드 위치
