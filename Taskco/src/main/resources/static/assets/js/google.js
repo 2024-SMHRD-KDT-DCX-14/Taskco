@@ -8,6 +8,7 @@ window.onload = function() {
 	google.accounts.id.initialize({
 		client_id: "938786367795-m2u4s4j4u6nhriskq4skss27m0dl82va.apps.googleusercontent.com",
 		callback: handleCredentialResponse
+		
 	});
 	google.accounts.id.renderButton(
 		document.querySelector('.g_id_signin'),
@@ -17,27 +18,44 @@ window.onload = function() {
 };
 
 // ID Token 처리 함수
+/*
+1. googleLogin:
+ID Token 검증 및 사용자 인증 (주로 비동기 요청으로 처리)
+클라이언트는 fetch 요청을 통해 이 엔드포인트를 호출
+2. apiLogin:
+인증 후 브라우저가 리디렉트되는 화면 전환 엔드포인트
+클라이언트의 window.location.href를 통해 호출
+
+*/
+
+
+
 function handleCredentialResponse(response) {
 	/* ID 토큰 생성해서 POST방식으로 보내기 */
 	fetch('/googleLogin', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify({ idToken: response.credential })
+		body: JSON.stringify({ credential: response.credential })
+
 	})
 		.then(response => response.ok ? response.json() : Promise.reject("Login failed"))
 		.then(data => {
+			console.log("Server response: ", data);
 			if (data.success) {
-				window.location.href = "/apiLogin"; // 로그인 성공 시 apiLogin 매핑값으로 리다이렉트
+				window.location.href = "/goTaskco"; // 로그인 성공 시 goTaskco 매핑값으로 리다이렉트
 			} else {
 				alert("로그인 실패: " + data.message);
 			}
 		})
-		.catch(error => 
-			alert("로그인 중 오류 발생" + err)
-		);
-		
-	 console.log("Encoded JWT ID token: ", response.credential); // ID Token 출력
-		
+		.catch(error => {
+
+			console.error("error during login", error);
+			alert("로그인 중 오류 발생" + error);
+
+		});
+
+	console.log("Credential token: ", response.credential); // ID Token 출력
+
 }
 
 

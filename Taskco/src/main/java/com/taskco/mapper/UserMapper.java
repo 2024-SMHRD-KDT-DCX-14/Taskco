@@ -1,7 +1,7 @@
 package com.taskco.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
-
+import org.apache.ibatis.annotations.Param;
 
 import com.taskco.entity.User;
 
@@ -14,5 +14,13 @@ public interface UserMapper {
 	// 로그인
 	public User login(User user);
 	
-	public User loginWithEmail(String email); // 이메일 기반 사용자 조회
+	// 구글api
+	public User loginWithEmail(User user); // 이메일 기반 사용자 조회
+	
+	// email 중복처리(회원가입시)
+	public User check(String email);
+	
+	// 프로필 수정
+	public int update(User user);
+	
 }

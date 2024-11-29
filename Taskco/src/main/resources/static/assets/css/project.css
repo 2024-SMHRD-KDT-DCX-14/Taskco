@@ -1,0 +1,220 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+html{
+    height: 100vh; /* 화면 전체 높이 사용 */
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(#5066d6, #98a1cf4c);
+    color: #333;
+    height : 100%
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 13.5% 72% 13.5% 1%;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    overflow-y: auto; /* 세로 스크롤 활성화 */
+    overflow-x: hidden; /* 가로 스크롤 비활성화 */
+}
+
+.sidebar {
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+    gap: 20px;
+}
+
+.sidebar,
+.right-sidebar {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 35px;
+    height: 100%;
+}
+
+.sidebar .project-name h2,
+.sidebar .project-name span {
+    text-align: center;
+    display: block;
+}
+
+
+
+.project-name {
+    flex: 2;
+}
+.chatting {
+    flex: 7;
+}
+.user-info {
+    flex: 1;
+}
+
+.sidebar .user-info {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.main-content {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 5fr 60fr 7fr 25fr ;
+    gap: 10px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.working-list,
+.stats-overview,
+.calendar {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.working-list {
+    display: grid;
+    grid-template-rows: 2fr 25fr;
+    width: 100%;
+    height: 100%;
+    gap: 5px; 
+    border-radius : 15px;
+}
+
+.title{
+    grid-row: 1; /* Stay in the first column */
+    display : grid;
+    grid-template-columns: 0.3fr 0.7fr;
+}
+
+.title > h2{
+    margin-left: 20px;
+    align-content: center;
+    grid-column: 1;
+}
+
+.title > form{
+    grid-column: 2;
+    display: flex;
+    justify-content: right;
+}
+
+
+
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius : 15px;
+}
+
+.calendar-grid {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.right-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    right: 30px;
+}
+
+.working-status{
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 35px;
+}
+
+.upcoming {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.working-status {
+    flex: 3.5
+}
+
+.upcoming {
+    flex: 6.5
+}
+
+.progress-circle {
+    width: 100px;
+    height: 100px;
+    background-color: #a29bfe;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.upcoming-event {
+    margin-top: 10px;
+}
+
+.dashboard-stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap; /* 화면 크기에 맞게 줄 바꿈 */
+    padding: 10px;
+}
+
+.stat-card {
+    background-color: #e0e0e0;
+    padding: 20px;
+    border-radius: 35px;
+    text-align: center;
+    flex: 1; /* 남는 공간을 고르게 차지 */
+    min-width: 200px; /* 카드 최소 너비 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+/* 화면 크기가 768px 이하일 때 카드 크기 조정 */
+@media (max-width: 768px) {
+    .dashboard-stats {
+        gap: 10px; /* 카드 간격 좁힘 */
+    }
+
+    .stat-card {
+        flex: 1 1 48%; /* 두 카드씩 한 줄에 배치 */
+        min-width: 45%; /* 카드 너비 줄이기 */
+    }
+}
+
+/* 화면 크기가 480px 이하일 때 카드 크기 조정 */
+@media (max-width: 480px) {
+    .stat-card {
+        flex: 1 1 100%; /* 카드 한 줄에 하나씩 표시 */
+        min-width: 100%;
+    }
+}
