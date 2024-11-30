@@ -13,6 +13,9 @@ public interface KanbanMapper {
 	
 	public int updateKanban(List<Kanban> list);
 	
+	public int deleteKanban(List<Kanban> list);
+
+	
 	
 	
 }
