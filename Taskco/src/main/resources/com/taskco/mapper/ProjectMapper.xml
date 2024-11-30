@@ -2,57 +2,85 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.taskco.mapper.ProjectMapper">
 
-   <!-- 프로젝트를 생성할때 생겨나야 하는 테이블이 있음 -->
+	<!-- 프로젝트를 생성할때 생겨나야 하는 테이블이 있음 -->
 
-   <select id="list" resultType="com.taskco.entity.List">
-      SELECT B.ROLE, A.P_TITLE, A.P_IDX, A.ST_DT, A.ED_DT
-      FROM TB_JOIN B
-      LEFT JOIN TB_PROJECT A
-      ON A.P_IDX = B.P_IDX
-      WHERE B.EMAIL= #{email}
-   </select>
-   <!-- - TB_JOIN AND TB_PROJECT 그래서 WHERE EMAIL이 같은걸로 *이 아닌 지정 필요 - 임명 식별자 
-      필요.. - 그럼 임명 DTO 필요 ... ∴2가지 선택지 있음, 여기서 가지고 온다, 프로젝트 진입 과정에서 정한다 -->
+	<select id="list" resultType="com.taskco.entity.List">
+		SELECT B.ROLE, A.P_TITLE, A.P_IDX,
+		A.ST_DT, A.ED_DT
+		FROM TB_JOIN B
+		LEFT JOIN TB_PROJECT A
+		ON A.P_IDX =
+		B.P_IDX
+		WHERE B.EMAIL= #{email}
+	</select>
+	<!-- - TB_JOIN AND TB_PROJECT 그래서 WHERE EMAIL이 같은걸로 *이 아닌 지정 필요 - 임명 식별자 
+		필요.. - 그럼 임명 DTO 필요 ... ∴2가지 선택지 있음, 여기서 가지고 온다, 프로젝트 진입 과정에서 정한다 -->
 
 
-   <!-- 프로젝트 생성 -->
-   <insert id="createProject"
-      parameterType="com.taskco.entity.Project">
+	<!-- 프로젝트 생성 -->
+	<insert id="createProject"
+		parameterType="com.taskco.entity.Project">
 
-      INSERT INTO TB_PROJECT ( P_IDX, P_TITLE, P_DESC, EMAIL, ED_DT, P_STATUS)
-      VALUES (#{p_idx}, #{p_title}, #{p_desc}, #{email}, #{ed_dt},
-      #{p_status})
-   </insert>
+		INSERT INTO TB_PROJECT ( P_IDX, P_TITLE, P_DESC, EMAIL,
+		ED_DT, P_STATUS)
+		VALUES (#{p_idx}, #{p_title}, #{p_desc}, #{email},
+		#{ed_dt},
+		#{p_status})
+	</insert>
 
-   <insert id="createJoin"
-      parameterType="com.taskco.entity.Project">
-      INSERT INTO TB_JOIN ( P_IDX, EMAIL, JOIN_DT,APPROVAL_YN, ROLE)
-      VALUES ( #{p_idx}, #{email}, SYSDATE, 'Y', '팀장')
-   </insert>
+	<insert id="createJoin"
+		parameterType="com.taskco.entity.Project">
+		INSERT INTO TB_JOIN ( P_IDX, EMAIL, JOIN_DT,APPROVAL_YN,
+		ROLE)
+		VALUES ( #{p_idx}, #{email}, SYSDATE, 'Y', '팀장')
+	</insert>
 
-   <insert id="join" parameterType="com.taskco.entity.Join">
-      INSERT INTO TB_JOIN (P_IDX, EMAIL, APPROVAL_YN, ROLE)
-      VALUES( #{p_idx}, #{email}, #{approval_yn}, #{role})
-   </insert>
+	<insert id="createCroom" parameterType="com.taskco.entity.Croom">
+		INSERT INTO TB_CHATROOM ( P_IDX, CROOM_STATUS)
+		VALUES ( #{p_idx} , #{croom_status})
+	</insert>
+
+
+	<insert id="join" parameterType="com.taskco.entity.Join">
+		INSERT INTO TB_JOIN (P_IDX,
+		EMAIL, APPROVAL_YN, ROLE)
+		VALUES( #{p_idx}, #{email}, #{approval_yn},
+		#{role})
+	</insert>
 
 
 	<!-- 프로젝트 선택 시 session에 project정보를 등록하기 위해 -->
-   <select id="view" resultType="com.taskco.entity.Project">
-      SELECT * 
-      FROM TB_PROJECT
-      WHERE P_IDX = #{p_idx}
-   </select>
+	<select id="view" resultType="com.taskco.entity.Project">
+		SELECT *
+		FROM TB_PROJECT
+		WHERE P_IDX
+		= #{p_idx}
+	</select>
 
-   <select id="teamMate" parameterType="com.taskco.entity.Project" resultType="com.taskco.entity.TeamMate">
-      SELECT A.JOIN_IDX, B.PROFILE_IMG, B.NAME, A.ROLE
-      FROM TB_JOIN A
-      LEFT JOIN TB_USER B
-      ON A.EMAIL = B.EMAIL
-      WHERE A.P_IDX = #{p_idx}
-      ORDER BY A.JOIN_IDX
-   </select>
-   
-   
+	<select id="teamMate" parameterType="com.taskco.entity.Project"
+		resultType="com.taskco.entity.TeamMate">
+		SELECT A.JOIN_IDX, B.PROFILE_IMG, B.NAME, A.ROLE
+		FROM
+		TB_JOIN A
+		LEFT JOIN TB_USER B
+		ON A.EMAIL = B.EMAIL
+		WHERE A.P_IDX =
+		#{p_idx}
+		ORDER BY A.JOIN_IDX
+	</select>
+
+	<!-- projectMapper 부분 -->
+	<select id="getProjectInfo"
+		resultType="com.taskco.entity.Project">
+
+		SELECT *
+		FROM TB_PROJECT
+		WHERE P_IDX=#{p_idx}
+
+
+	</select>
+
+
 
 
 </mapper>

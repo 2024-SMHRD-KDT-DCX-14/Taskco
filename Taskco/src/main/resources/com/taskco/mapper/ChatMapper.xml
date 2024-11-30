@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taskco.mapper.ChatMapper">
+
+
+
+
+   <!-- 채팅방 정보 불러오기 -->
+   <select id="loadRoom" resultType="com.taskco.entity.Croom">
+      SELECT CROOM_IDX FROM
+      TB_CHATROOM
+      WHERE P_IDX = #{p_idx}
+   </select>
+
+   <!-- 채팅 메시지 불러오기 -->
+   <select id="loadChat" resultType="com.taskco.entity.Chat">
+      SELECT CHATTER, CHAT, CHAT_FILE, CHAT_DT
+      FROM TB_CHAT
+      WHERE CROOM_IDX = #{croom_idx}
+      ORDER BY CHAT_DT ASC  <!-- 최신 메시지가 맨 위로 나오도록 DESC로 수정 -->
+   </select>
+
+   <!-- 채팅 입력 -->
+   <insert id="sendMessage" parameterType="com.taskco.entity.Chat">
+      INSERT INTO TB_CHAT
+      (CROOM_IDX, CHATTER, CHAT, CHAT_FILE)
+      VALUES (#{croom_idx}, #{chatter}, #{chat}, #{chat_file})
+   </insert>
+
+
+</mapper>

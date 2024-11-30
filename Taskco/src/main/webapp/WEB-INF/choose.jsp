@@ -17,7 +17,7 @@
 	<div class="container">
 		<div class="profile">
 			<img
-				src=""
+				src="/images/${sessionScope.user.profile_img}"
 				alt="Profile Picture"> <br>
 			<div>
 				<!-- 수정 버튼(모달) => 정환수정 -->
