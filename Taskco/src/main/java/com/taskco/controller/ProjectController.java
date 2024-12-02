@@ -102,30 +102,42 @@ public class ProjectController {
 	}
 
 	@RequestMapping("/view")
-	public String view(String p_idx, Model model, HttpSession session) {
+	   public String view(String p_idx, Model model, HttpSession session) {
+	      User user = (User) session.getAttribute("user");
+	      
+	      List<Project> list = mapper.list(user);
+	      System.out.println(list);
+		  session.setAttribute("list", list);
+		  
+	      String email = user.getEmail();
+	      Project project = mapper.view(p_idx);
+	      // 프로젝트 정보 세션에 저장
+	      session.setAttribute("project", project);
+	      // 팀원 정보 세션에 저장
+	      List<TeamMate> teamMate = mapper.teamMate(project);
+	      session.setAttribute("teamMate", teamMate);
+	      // Join 정보 세션에 저장
+	      Join search = new Join();
+	      search.setEmail(email);
+	      search.setP_idx(project.getP_idx());
+	      Join result = mapper.viewJoin(search);
+	      session.setAttribute("join", result);
+	      // 채팅방 정보 세션에 저장
+	      Croom croom = Cmapper.loadRoom(p_idx);
+	      session.setAttribute("Croom", croom);
+	      System.out.println(p_idx);
+	      
+	      // 채팅 내역 모델에 추가
+	      List<Chat> chatMessages = Cmapper.loadChat(croom);
 
-		Project project = mapper.view(p_idx);
-		// 프로젝트 정보 세션에 저장
-		session.setAttribute("project", project);
-		// 팀원 정보 세션에 저장
-		List<TeamMate> teamMate = mapper.teamMate(project);
-		session.setAttribute("teamMate", teamMate);
+	      Gson gson = new Gson();
+	      String chatMessagesJson = gson.toJson(chatMessages);
+	      
+	      // JSON 데이터를 JSP로 전달
+	      model.addAttribute("chatMessagesJson", chatMessagesJson);
 
-		// 채팅방 정보 세션에 저장
-		Croom croom = Cmapper.loadRoom(p_idx);
-		session.setAttribute("Croom", croom);
-		System.out.println(p_idx);
-		// 채팅 내역 모델에 추가
-		List<Chat> chatMessages = Cmapper.loadChat(croom);
-
-		Gson gson = new Gson();
-		String chatMessagesJson = gson.toJson(chatMessages);
-
-		// JSON 데이터를 JSP로 전달
-		model.addAttribute("chatMessagesJson", chatMessagesJson);
-
-		return "projectMain";
-	}
+	      return "projectMain";
+	   }
 
 	// 프로젝트 나가기(정환수정)
 	@RequestMapping("/exit")

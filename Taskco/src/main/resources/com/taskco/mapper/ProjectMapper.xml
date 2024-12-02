@@ -80,7 +80,13 @@
 
 	</select>
 
-
+	   <select id="viewJoin" parameterType="com.taskco.entity.Join"
+      resultType="com.taskco.entity.Join">
+      SELECT *
+      FROM TB_JOIN
+      WHERE EMAIL = #{email}
+      AND P_IDX = #{p_idx}
+   </select>
 
 
 </mapper>

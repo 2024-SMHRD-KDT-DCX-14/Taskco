@@ -15,19 +15,24 @@
 
 }
 
-
-.board{
+.board {
     width: 100%;
-    height: 100%;
-    overflow: scroll;
-    overflow-y: auto;
+    height: 400px;
+    overflow: hidden; /* 스크롤바는 lanes 내부에서 처리 */
     background-color: aliceblue;
+    display: flex;
+    justify-content: center; /* lanes를 수평 중앙 정렬 */
+    align-items: flex-start; /* 세로 기준 상단 정렬 */
+    padding: 10px; /* 보드 주변 여백 추가 */
+    box-sizing: border-box;
 }
-
 /* 카드 추가 파트 */
-#todo-form{
-
-    padding: 5px 5px 5px;
+#todo-form {
+    display: flex; /* 내부 요소를 플렉스 컨테이너로 설정 */
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    align-items: center; /* 세로 방향 가운데 정렬 */
+    gap: 5px; /* 버튼 및 입력 필드 간격 */
+    padding: 5px; /* 내부 여백 */
 }
 
 /* 카드 추가 입력창  */
@@ -66,15 +71,16 @@
 
 /* 보드  */
 .lanes{
-    display: flex;
-    align-items: flex-start;
-    justify-content: start;
+    display: flex;	
+    justify-content: center;
+    
     /* 열 별 간격 */
     gap: 10px;
 
     overflow: scroll;
-    height: 100vh;
+    height: 100%;
     width: 100%;
+    
 
 }
 
@@ -97,7 +103,7 @@ margin-bottom: 8px;
     box-shadow: 0px 5px 5px rgba(0,0,0,0.25);
     padding: 12px;
     border-radius: 4px;
-    width: 33%;
+    width: 32%;
     flex-shrink: 0;
     height: 100%;
     overflow-y: auto;
@@ -110,10 +116,10 @@ margin-bottom: 8px;
     color: black;
     box-shadow: 0px 3px 5px rgba(0,0,0,0.25);
     
-    padding: 12px;
+    padding: 8px;
     border-radius: 4px;
 
-    font-size: 16px;
+    font-size: 14px;
     cursor: move;
 
 }
@@ -122,7 +128,7 @@ margin-bottom: 8px;
 .task-head{
     font-weight: bold;
     
-    font-size: 20px;
+    font-size: 18px;
 
 }
 

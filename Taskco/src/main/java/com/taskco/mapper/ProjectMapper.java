@@ -33,5 +33,7 @@ public interface ProjectMapper {
 
 	// 프로젝트 관리에 필요한 정보 가져오기(
 	public List<Project> getProjectInfo(String p_idx);
+	
+	public Join viewJoin(Join join);
 
 }
