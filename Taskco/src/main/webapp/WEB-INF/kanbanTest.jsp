@@ -59,10 +59,31 @@
 			<div class="swim-lane" id=done data-status = "done">
 				<h3 class="heading">완료</h3>
 				<!-- <p class="task" draggable="true">할 일 1</p> -->
-
 			</div>
 		</div>
-
+		
+		<!-- 기능 테스트용 버튼 -->
+		<!-- reqTeamMateList -->
+		<button id = "teamMateList-test-btn">팀원 목록 불러오기</button>	
+		
+		<!--  -->
+		<button id = "getAssignerList-test-btn">담당자 목록 불러오기</button>	
+		
+		
+		<!-- 인원추가 -->
+		<div class="btn-group">
+		  <button id ="test-btn" type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+		    인원 추가
+		  </button>
+		  <ul class="dropdown-menu" id="assigner-dropdown-chose-test">
+		    <li><a class="dropdown-item" href="#">Action</a></li>
+		    <li><a class="dropdown-item" href="#">Another action</a></li>
+		    <li><a class="dropdown-item" href="#">Something else here</a></li>
+		    <li><hr class="dropdown-divider"></li>
+		    <li><a class="dropdown-item" href="#">Separated link</a></li>
+		  </ul>
+		</div>
+		<div id = "test-area"></div>
 
 
 	</div><!-- board 클래스 끝 -->
@@ -91,16 +112,11 @@
 	                    <input type="text" id="assigner-current" >
 	                    <!-- Example single danger button -->
 						<div class="btn-group">
-						  <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+						  <button id ="assigner-dropdown-btn" type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 						    인원 추가
 						  </button>
-						  <ul class="dropdown-menu" id=assigner-dropdown-chose>
-						    <li><a class="dropdown-item" href="#">Action</a></li>
-						    <li><a class="dropdown-item" href="#">Another action</a></li>
-						    <li><a class="dropdown-item" href="#">Something else here</a></li>
-						    <li><hr class="dropdown-divider"></li>
-						    <li><a class="dropdown-item" href="#">Separated link</a></li>
-						  </ul>
+						  <!--  -->
+						  <ul class="dropdown-menu" id="assigner-dropdown-chose"></ul>
 						</div>
                     </div>
                     
@@ -110,20 +126,7 @@
                     <textarea type="text" id="modalContent" ></textarea>
                     <br>
                 </div>
-                <!-- <div id="assigner-container">
-                    <p>현 수행인원</p>
-                    <div id = "assigner-current">
-                        현재 이 업무를 수행하고 있는 인원 접어 넣기
-
-                    </div>
-                    <hr>
-                    <p>프로젝트 참여 인원</p>
-                    <div id = "project-participant" >
-                        현재 프로젝트에 참여중인 인원 집어 넣기.
-
-                    </div>
-                </div> -->
-    
+           
             </div>
              <!-- 전체 저장 버튼 -->
              <button id="kanModalSaveBtn" >저장</button> 
@@ -136,9 +139,13 @@
 
 	<!-- script -->
 	<script src="assets/js/kanDrag.js" defer></script>
+	<script src="assets/js/KanbanModal.js" defer></script>
 	<script src="assets/js/kanInsertCard.js" defer></script>
 	<script src="assets/js/getKanban.js" defer></script>
 	<script src="assets/js/kanbanUpdate.js" defer></script>
+	<script src="assets/js/teamMateList.js" defer></script> <!-- 팀원 전체 정보 불러오기 -->
+	<script src="assets/js/getKanAssigner.js" defer></script> <!-- 담당자 정보 불러오기 -->
+	<script src="assets/js/SelectAssigner.js" defer></script> <!-- 팀원선택 -->
 	
 
 

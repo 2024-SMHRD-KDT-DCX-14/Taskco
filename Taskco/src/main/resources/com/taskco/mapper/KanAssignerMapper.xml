@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taskco.mapper.KanAssignerMapper">
+
+
+
+	<select id="reqKanAssinger" resultType="com.taskco.entity.KanAssigner">
+     	SELECT EMAIL
+		FROM TB_KAN_ASSIGNER
+		WHERE KAN_IDX = #{kanIdx}
+   </select>
+
+	<insert id="updateKanAssigner" parameterType="list">
+	
+		INSERT ALL 
+		<foreach collection="list" item = "assigner">
+			INTO TB_KAN_ASSIGNER(
+			
+			KAN_IDX,
+			EMAIL
+		
+			
+			)VALUES(
+			 #{assigner.kanIdx, jdbcType=VARCHAR},
+			 #{assigner.email, jdbcType=VARCHAR}
+			
+			)
+			
+		
+		</foreach>
+		SELECT 1 FROM dual
+	
+	
+	</insert>
+	
+
+</mapper>

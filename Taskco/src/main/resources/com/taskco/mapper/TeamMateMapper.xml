@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taskco.mapper.TeamMateMapper">
+
+
+
+<select id="teamMateList" resultType="com.taskco.entity.TeamMate">
+      SELECT A.JOIN_IDX, B.PROFILE_IMG, B.NAME, A.ROLE, A.EMAIL
+      FROM TB_JOIN A
+      LEFT JOIN TB_USER B
+      ON A.EMAIL = B.EMAIL
+      WHERE A.P_IDX = #{pIdx}
+      ORDER BY A.JOIN_IDX
+   </select>
+
+
+
+
+</mapper>

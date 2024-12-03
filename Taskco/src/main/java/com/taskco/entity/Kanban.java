@@ -35,6 +35,7 @@ public class Kanban {
 
     // 칸반 칼라 
     private String kanColor;
+    
 	
 	
 	

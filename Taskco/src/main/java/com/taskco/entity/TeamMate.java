@@ -8,5 +8,6 @@ public class TeamMate {
 	private String profile_img;
 	private String name;
 	private String role;
+	private String email;
 
 }
