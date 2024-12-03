@@ -17,7 +17,7 @@ public class ProjectService {
 	private ProjectMapper projectMapper;
 
 	@Transactional
-	public void updateProjectAndMembers(Map<String, Object> requestBody) {
+	public void updateProjectAndMembers(Map<String, Object> requestBody) { 
 		String p_idx = (String) requestBody.get("p_idx");
 		String p_title = (String) requestBody.get("p_title");
 		String st_dt = (String) requestBody.get("st_dt");

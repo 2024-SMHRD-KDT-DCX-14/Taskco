@@ -26,14 +26,14 @@ public class ProjectRestController {
 
     @RequestMapping("/getProjInfo")
     public ResponseEntity<Map<String, Object>> getSessionProject(HttpSession session) {
-        Project project = (Project) session.getAttribute("project");
+        Project project = (Project) session.getAttribute("project"); // 세션 구조 - 프로젝트 엔터티
         Join join = (Join) session.getAttribute("join");
 
-        if (project == null || join == null) {
+        if (project == null || join == null) { //프로젝트와 조인 세션이 있을 때만 작동 오류 처리
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-
-        List<Join> teamMembers = projectService.getTeamMembers(project.getP_idx());
+        
+        List<Join> teamMembers = projectService.getTeamMembers(project.getP_idx()); // 매개변수(프로젝트 인덱스) => {해당 프로젝트에 참여하고 있는 이메일 정보}
 
         Map<String, Object> response = new HashMap<>();
         response.put("role", join.getRole());

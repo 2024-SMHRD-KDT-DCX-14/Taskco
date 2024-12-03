@@ -403,6 +403,14 @@
 	<script src="assets/js/getKanban.js" defer></script>
 
 	<!--  권한설정 부분(정환추가) -->
-	<script src="assets/js/manageProject.js"></script>
+	
+	<!-- 참여인원조회 함수-->
+	<script src="assets/js/teamMateList.js" defer></script>
+	<script src="assets/js/manageProject.js" defer></script>
+	
+	
+	
+	
+	
 </body>
 </html>
