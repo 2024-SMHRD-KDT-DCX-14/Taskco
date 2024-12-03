@@ -89,7 +89,7 @@
 			<div>
 				<!-- 수정 버튼(모달) => 정환수정 -->
 				<span>${sessionScope.user.name }</span> <a href="#"
-					onclick="openModal('modal1')"> <img id="edit_icon"
+					onclick="openModal('profileModal')"> <img id="edit_icon"
 					src="https://cdn-icons-png.flaticon.com/512/7033/7033287.png"
 					alt="QR Code">
 				</a>
@@ -103,8 +103,6 @@
 
 
 		<div class="details">
-
-
 
 			<div class="modal" id="addModal">
 				<div class="modal_body">
@@ -149,9 +147,9 @@
 
 			<!--프로필 수정 모달창(정환수정) -->
 
-			<div class="modal" id="modal1">
+			<div class="modal" id="profileModal">
 				<div class="modal_body">
-					<h2>프로필 수정</h2>
+					<h3>프로필 수정</h3>
 					<form action="update" method="POST" enctype="multipart/form-data">
 						<!-- 이름  -->
 						<div>
@@ -181,7 +179,7 @@
 							<input type="submit" value="수정">
 						</div>
 					</form>
-					<div class="close-btn" onclick="closeModal('modal1')">닫기</div>
+					<div class="close-btn" onclick="closeModal('profileModal')">닫기</div>
 				</div>
 			</div>
 

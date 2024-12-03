@@ -7,46 +7,51 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.taskco.entity.Join;
+
 import com.taskco.entity.Project;
-import com.taskco.mapper.ProjectMapper;
+import com.taskco.service.ProjectService;
 
 import jakarta.servlet.http.HttpSession;
 
-// 회원관리용 컨트롤러(정환 추가)
 @RestController
 public class ProjectRestController {
 
-	@Autowired
-	private ProjectMapper mapper;
+    @Autowired
+    private ProjectService projectService;
 
-	// json 방식 사용x => 세션에서 불러올 예정 
-//	@RequestMapping("/reqProject") // RequestParam으로 PJ_ID 값을 받아옴
-//	public List<Project> getProject(@RequestParam("p_idx") String p_idx) {
-//		
-//		// 1. 데이터 수집
-//		System.out.println("p_idx"+p_idx);
-//		// 2. 기능 실행
-//		List<Project> list=mapper.getProjectInfo(p_idx);
-//		System.out.println(list);
-//		// 3. View 이동
-//		return list; // json으로 자동으로 보내짐.js에서 매핑할 때 태그명과 필드명을 동일하게 주면 됨.
-//	}
-//		
-	// ajax 요청을 통해 "project" 세션 데이터 가져오기
-	@RequestMapping("/getSessionProject")
-	public ResponseEntity<Project> getSessionProject(HttpSession session) {
-		// project 세션 가져오기
-		Project project = (Project) session.getAttribute("project");
-		if (project == null) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		}
-		// 요청에 대한 응답
-		return ResponseEntity.ok(project);
-	}
+    @RequestMapping("/getProjInfo")
+    public ResponseEntity<Map<String, Object>> getSessionProject(HttpSession session) {
+        Project project = (Project) session.getAttribute("project");
+        Join join = (Join) session.getAttribute("join");
 
+        if (project == null || join == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
+        List<Join> teamMembers = projectService.getTeamMembers(project.getP_idx());
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("role", join.getRole());
+        response.put("email", join.getEmail());
+        response.put("project", project);
+        response.put("teamMembers", teamMembers);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @RequestMapping("/updateProject")
+    public ResponseEntity<?> updateProject(@RequestBody Map<String, Object> requestBody) {
+        try {
+            projectService.updateProjectAndMembers(requestBody);
+            return ResponseEntity.ok("업데이트 성공");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("업데이트 실패: " + e.getMessage());
+        }
+    }
 }
+

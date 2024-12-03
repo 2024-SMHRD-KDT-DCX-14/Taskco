@@ -82,18 +82,26 @@
 		<!-- User Info -->
 		<div class="user-info">
 			<span id="bottomProfileImg">프로필사진</span> <span id="user_name">${user.name}</span>
-			<span id="currentRole">${join.role}</span> <img id="manageImg"
-				src="https://cdn-icons-png.flaticon.com/512/824/824700.png"
-				alt="setting" style="width: 40px; height: auto; cursor: pointer;"
-				onclick="openAuthorityModal()">
+			<span id="currentRole">${join.role}</span>
+
+			<!-- 권한 설정 버튼 -->
+			<div id="authority-change-container" style="text-align: right;">
+				<a onclick="openAuthorityModal()"> 
+				<img id="copy-code-img2"
+					src="https://cdn-icons-png.flaticon.com/512/824/824700.png"
+					alt="setting" style="width: 20px; height: auto; cursor: pointer;">
+				</a>
+			</div>
 		</div>
 
 
 	</div>
 	<!-- Modal -->
+	<!-- 권한 설정 모달창 -->
 	<div class="modal" id="modal1">
-		<div class="modal_body" id="modal_content"></div>
-		<button class="close-btn" onclick="closeModal('modal1')">닫기</button>
+		<div class="modal_body" id="modal_content">
+			<!-- JavaScript에서 동적으로 내용이 추가됩니다 -->
+		</div>
 	</div>
 	<!-- Main Content -->
 	<div class="dashboard">
@@ -156,12 +164,14 @@
 			</div>
 
 			<!-- Calendar -->
-			<h5>게시판 & 캘린더</h3>
-			<section class="center-bottom">
-				<div class="teamBoard"></div>
-				<div class="Calendar"></div>
-				<div class="teamMate"></div>
-			</section>
+			<h5>
+				게시판 & 캘린더
+				</h3>
+				<section class="center-bottom">
+					<div class="teamBoard"></div>
+					<div class="Calendar"></div>
+					<div class="teamMate"></div>
+				</section>
 		</main>
 
 		<!-- Right Sidebar -->

@@ -36,7 +36,8 @@
 	</insert>
 
 	<insert id="createCroom" parameterType="com.taskco.entity.Croom">
-		INSERT INTO TB_CHATROOM ( P_IDX, CROOM_STATUS)
+		INSERT INTO TB_CHATROOM (
+		P_IDX, CROOM_STATUS)
 		VALUES ( #{p_idx} , #{croom_status})
 	</insert>
 
@@ -80,13 +81,42 @@
 
 	</select>
 
-	   <select id="viewJoin" parameterType="com.taskco.entity.Join"
-      resultType="com.taskco.entity.Join">
-      SELECT *
-      FROM TB_JOIN
-      WHERE EMAIL = #{email}
-      AND P_IDX = #{p_idx}
-   </select>
+	<select id="viewJoin" parameterType="com.taskco.entity.Join"
+		resultType="com.taskco.entity.Join">
+		SELECT *
+		FROM TB_JOIN
+		WHERE EMAIL = #{email}
+		AND P_IDX =
+		#{p_idx}
+	</select>
+
+	<!--프로젝트 탈퇴(팀원) -->
+	<delete id="leaveProject" parameterType="map">
+		DELETE FROM TB_JOIN
+		WHERE EMAIL = #{email} AND P_IDX = #{p_idx}
+	</delete>
+
+	<update id="updateProject">
+		UPDATE TB_PROJECT
+		SET P_TITLE = #{p_title},
+		ST_DT =
+		#{st_dt},
+		ED_DT = #{ed_dt},
+		P_DESC = #{p_desc},
+		P_STATUS = #{p_status}
+		WHERE P_IDX = #{p_idx}
+	</update>
+
+	<delete id="deleteMember">
+		DELETE FROM TB_JOIN
+		WHERE P_IDX = #{p_idx} AND EMAIL =
+		#{email}
+	</delete>
+
+	<select id="getTeamMembers" resultType="com.taskco.entity.Join">
+		SELECT * FROM TB_JOIN
+		WHERE P_IDX = #{p_idx}
+	</select>
 
 
 </mapper>

@@ -1,8 +1,10 @@
 package com.taskco.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.taskco.entity.Croom;
 import com.taskco.entity.Join;
@@ -35,5 +37,14 @@ public interface ProjectMapper {
 	public List<Project> getProjectInfo(String p_idx);
 	
 	public Join viewJoin(Join join);
+	
+	public int leaveProject(Map<String,Object> params);
+	
+	public void updateProject(@Param("p_idx") String p_idx, @Param("p_title") String p_title,
+            @Param("st_dt") String st_dt, @Param("ed_dt") String ed_dt,
+            @Param("p_desc") String p_desc, @Param("p_status") String p_status);
+	
+	public void deleteMember(@Param("p_idx") String p_idx, @Param("email") String email);
+	public List<Join> getTeamMembers(@Param("p_idx") String p_idx);
 
 }
