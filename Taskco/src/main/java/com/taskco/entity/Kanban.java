@@ -3,7 +3,6 @@ package com.taskco.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NonNull;
 
 @AllArgsConstructor // 모든 필드를 초기화하는 생성자. 
 @Data

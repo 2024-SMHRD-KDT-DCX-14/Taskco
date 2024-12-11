@@ -1,7 +1,6 @@
 package com.taskco.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import com.taskco.entity.User;
 

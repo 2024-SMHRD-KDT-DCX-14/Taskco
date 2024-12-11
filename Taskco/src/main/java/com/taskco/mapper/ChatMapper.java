@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.taskco.entity.Chat;
 import com.taskco.entity.Croom;
-import com.taskco.entity.Project;
 
 @Mapper
 public interface ChatMapper {

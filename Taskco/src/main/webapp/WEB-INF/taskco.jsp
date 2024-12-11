@@ -3,35 +3,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Taskco Login</title>
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-<script src="google.js"></script>
-</head>
-<body>
-	<!DOCTYPE html>
-<html lang="en">
 
-<head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TaskNest</title>
-
+<title>Taskco Login</title>
+<!-- 부트스트랩 및 스타일 -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+	crossorigin="anonymous">
 <link rel="stylesheet" href="assets/css/login1.css">
-<style>
-@font-face {
-	font-family: 'STUNNING-Bd';
-	src:
-		url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/STUNNING-Bd.woff2')
-		format('woff2');
-	font-weight: normal;
-	font-style: normal;
-}
 
-body {
-	font-family: 'STUNNING-Bd', sans-serif;
-}
-</style>
 
 
 <script>
@@ -43,68 +27,57 @@ body {
 		}
 	}
 </script>
-
-
 </head>
 
 <body>
-	<!-- 로그인 부분 -->
-	<div class="container">
-		<div class="screen">
-			<div class="screen__content">
+	<!-- 로고 섹션 -->
 
-				<form class="login" action="login" method="post">
-					<!--post방식 로그인 전송 -->
-					<div class="logo">
-						<img src="./KakaoTalk_20241106_120421742.png" alt="" id="logo">
-					</div>
-					<!--이메일  -->
-					<div class="login__field">
-						<i class="login__icon fas fa-user"></i> <input type="text"
-							name="email" class="login__input" placeholder="User name / Email">
-					</div>
-					<!--비밀번호 -->
-					<div class="login__field">
-						<i class="login__icon fas fa-lock"></i> <input type="password"
-							name="pw" class="login__input" placeholder="Password">
-					</div>
-					<button class="button login__submit">
-						<span class="button__text">로그인</span> <i
-							class="button__icon fas fa-chevron-right"></i>
-					</button>
-				</form>
-				<!--회원가입 부분 -->
-				<form  class="login" action="goJoin" method="post">
-					<button type="submit" class="button login__submit">
-						<span class="button__text">회원가입</span> <i
-							class="button__icon fas fa-chevron-right"></i>
-					</button>
-				</form>
+	<div class="project-logo"
+		style="text-align: center; margin-bottom: 20px;">
+		<img id="copy-code-img" style="width: 900px;" src="/images/TASKCO.png"
+			alt="Taskco Logo">
+	</div>
 
-				<!--구글 로그인 버튼 부분  -->
-				<div class="social_login">
-					<h3>소셜 계정으로 로그인</h3>
-					<!-- Google Identity Services 초기화 -->
-					<div id="g_id_onload"
-						data-client_id="938786367795-m2u4s4j4u6nhriskq4skss27m0dl82va.apps.googleusercontent.com"
-						data-login_uri="/googleLogin" data-auto_prompt="false"></div>
-					<div class="g_id_signin" data-type="standard" data-size="large"></div>
+	<div class="container d-flex align-items-center justify-content-center"
+		style="min-height: 100vh;">
+		<div class="row justify-content-between align-items-center"
+			style="width: 100%; max-width: 1200px;">
+
+
+			<!-- 로그인 폼 섹션 -->
+			<div class="col-md-6">
+				<div class="screen">
+					<div class="screen__content mt-3">
+						<form class="login" action="login" method="post">
+							<!-- 이메일 -->
+							<div class="form-floating mb-2">
+								<input type="text" name="email" id="email" class="form-control"
+									placeholder="name@example.com"><label for="email">Email</label>
+							</div>
+
+							<div class="form-floating mb-4">
+								<input type="password" name="pw" id="password"
+									class="form-control" placeholder="PassWord"><label
+									for="password">Password</label>
+							</div>
+
+							<!-- 로그인 버튼 -->
+							<button type="submit" class="btn btn-primary">로그인</button>
+						</form>
+
+						<!-- 회원가입 버튼 -->
+						<form class="login" action="goJoin" method="post">
+							<button type="submit" class="btn btn-secondary mt-3">회원가입</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-	<!-- Google Identity Services 초기화 -->
-	<!-- 	<div id="g_id_onload"
-		data-client_id="938786367795-m2u4s4j4u6nhriskq4skss27m0dl82va.apps.googleusercontent.com"
-		data-login_uri="/googleLogin" data-auto_prompt="false"></div> -->
-
-
-
-
 </body>
+
 
 </html>
 </body>
 </html>
+

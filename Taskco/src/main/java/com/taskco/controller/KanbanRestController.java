@@ -44,7 +44,7 @@ public class KanbanRestController {
 
 		// 2. 기능 실행
 		try {
-			int cntD = mapper.deleteKanban(list);
+			mapper.deleteKanban(list);
 			int cntU = mapper.updateKanban(list);
 
 			if (cntU > 0) {

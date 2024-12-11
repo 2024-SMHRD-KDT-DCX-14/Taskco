@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taskco.mapper.BoardMapper">
+
+
+
+<!-- 게시글 작성하고 업로드하면 리스트로 (리스트명: boardList) -->
+
+<!-- 요거는 전체 게시물 디스플레이 -->
+<select id="list" resultType="com.taskco.entity.Board">
+   SELECT
+      	B_IDX, 
+        B_TITLE,
+        B_CONTENT,
+        EMAIL,
+        B_DT,
+        B_VIEWS
+    FROM TB_BOARD
+    WHERE P_IDX = #{p_idx}
+    ORDER BY B_IDX DESC
+</select>
+
+
+<insert id="write" parameterType="com.taskco.entity.Board">
+    INSERT INTO TB_BOARD (B_TITLE, P_IDX ,B_CONTENT, EMAIL, B_FILE)
+    VALUES (#{b_title}, #{p_idx} ,#{b_content}, #{email}, #{b_file})
+</insert>
+
+<select id="view" resultType="com.taskco.entity.Board">
+   SELECT * FROM TB_BOARD WHERE B_IDX = #{b_idx}
+</select>
+
+<select id="displayBoardDetail" resultType="com.taskco.entity.Board">
+   SELECT * FROM TB_BOARD WHERE B_IDX = #{b_idx}
+</select>
+
+
+<update id="updateBoardModal" parameterType="com.taskco.entity.Board">
+
+   UPDATE TB_BOARD
+   SET b_title = #{b_title},
+        b_content = #{b_content},
+        b_file = #{b_file}
+   WHERE B_IDX = #{b_idx}
+
+</update>
+
+
+
+<delete id="deleteBoard" parameterType="com.taskco.entity.Board">
+
+   DELETE FROM TB_BOARD WHERE B_IDX = #{b_idx}
+
+
+</delete>
+
+
+
+</mapper>

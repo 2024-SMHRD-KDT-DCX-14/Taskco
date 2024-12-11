@@ -34,9 +34,14 @@ public class ProjectService {
 		// 1. 프로젝트 수정
 		projectMapper.updateProject(p_idx, p_title, st_dt, ed_dt, p_desc, p_status);
 		// 2. 삭제할 팀원 처리
+		
+		Join deleteJoin = new Join();
+		
+		
 		for (String email : deletedMembers) {
-			System.out.println("Deleting member: " + email); // 로그 추가
-			projectMapper.deleteMember(p_idx, email);
+			deleteJoin.setEmail(email);
+			deleteJoin.setP_idx(p_idx);
+			projectMapper.deleteMember(deleteJoin);
 		}
 	}
 

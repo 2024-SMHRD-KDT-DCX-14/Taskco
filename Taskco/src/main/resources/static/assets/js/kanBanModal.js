@@ -9,32 +9,42 @@ class KanbanModal {
 
 	// 모달 생성
 	createModal() {
-		const modal = document.createElement("div");
-		modal.id = "kanEditModal";
-		modal.className = "hidden";
+    const modal = document.createElement("div");
+    modal.id = "kanEditModal";
+    modal.className = "hidden";
 
-		modal.innerHTML = `
+    modal.innerHTML = `
       <div id="modalBody">
-        <h1>카드 상세보기</h1>
         <div id="modal-content">
-          <label for="modalTitle">제목:</label>
-          <input type="text" id="modalTitle"><br>
-          <label for="modalStDt">시작일:</label>
-          <input type="date" id="modalStDt">
-          <span> ~ </span>
-          <label for="modalEdDt">종료일:</label>
-          <input type="date" id="modalEdDt"><br>
-				<!-- 인원 추가 버튼 -->
-			  <div class="btn-group">
-			  	<button id ="kan-modal-add-assigner-btn" type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">인원 추가 </button>
-				<!-- 추가할 인원이 나오는 드롭메뉴 -->	
-			  	<ul class="dropdown-menu" id="assigner-dropdown-chose-menu"></ul>
-			  </div>
-				<!-- 추가할 인원 배지가 추가되는 곳 -->	
-			  <div id = "current-assigner-area"></div>a
-      		<label for="modalContent">내용:</label><br>
-      		<textarea id="modalContent"></textarea><br>
+          <!-- 제목 (같은 선상) -->
+          <div class="input-container">
+            <label for="modalTitle">제목:</label>
+            <input type="text" id="modalTitle">
+          </div>
+          <!-- 시작일 (같은 선상) -->
+          <div class="input-container">
+            <label for="modalStDt">시작일:</label>
+            <input type="date" id="modalStDt">
+          </div>
+          <!-- 종료일 (같은 선상) -->
+          <div class="input-container">
+            <label for="modalEdDt">종료일:</label>
+            <input type="date" id="modalEdDt">
+          </div>
+          <!-- 인원 추가 버튼 (기존 방식 유지) -->
+          <div class="btn-group">
+            <label for="kan-modal-add-assigner-btn">담당자:</label>
+            <button id="kan-modal-add-assigner-btn" type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              인원 추가
+            </button>
+            <ul class="dropdown-menu" id="assigner-dropdown-chose-menu"></ul>
+          </div>
+          <!-- 추가된 인원 배지 (기존 방식 유지) -->
+          <div id="current-assigner-area"></div>
+          <!-- 내용 (기존 방식 유지) -->
+          <textarea id="modalContent"></textarea><br>
         </div>
+        <!-- 액션 버튼 -->
         <div id="modal-actions">
           <span id="kanModalSaveBtn">저장</span>
           <span id="kanModalEditBtn">수정</span>
@@ -43,9 +53,9 @@ class KanbanModal {
       </div>
     `;
 
-		document.body.appendChild(modal);
-		return modal;
-	}
+    document.body.appendChild(modal);
+    return modal;
+}
 
 	// 이벤트 초기화
 	initEvents() {

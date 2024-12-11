@@ -12,12 +12,12 @@ let kIdx = "e6ee6d41-0d9d-40c3-b06c-2b401571e958"
 //reqTeamMateList(pjid)
 
 
-
+/*
 // 테스트 버튼
 testBtn = document.getElementById("test-btn")
 
 testBtn.addEventListener("click", getTmDropDownMenu);
-
+*/
 
 
 //버튼 드롭다운 메뉴에 정보 집어 넣을 위치. 

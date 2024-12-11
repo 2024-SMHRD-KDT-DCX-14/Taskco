@@ -3,7 +3,7 @@
 // 업무에 배정된 담당자를 불러오기. 
 
 
-
+/*
 // 1. 이벤트 리스너 
 const getKanAssignerBtn = document.getElementById("getAssignerList-test-btn")
 
@@ -17,7 +17,7 @@ getKanAssignerBtn.addEventListener("click", async () => {
 
 
 })
-
+*/
 
 
 // 담당자 정보를 불러오는 함수 칸반 인덱스 -> 배정된 이메일 정보 

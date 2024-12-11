@@ -1,34 +1,129 @@
- #kanEditModal {
-    position: fixed; /* 화면에 고정 */
-    z-index: 1; /* 상위에 위치 */
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.7); /* 반투명한 배경색 */
-  }
-
-#kanEditModal.hidden {
-    display: none;
-    
+/* Modal 스타일 */
+#kanEditModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  width: 70%;
+  height: 80%;
+  padding: 20px;
+  z-index: 1000;
+  font-family: Arial, sans-serif;
 }
 
+/* 숨김 처리 */
+#kanEditModal.hidden {
+  display: none;
+}
+
+/* 입력 컨테이너 */
+#kanEditModal .input-container {
+  display: flex; /* 라벨과 입력 필드를 가로로 배치 */
+  align-items: center; /* 수직 가운데 정렬 */
+  gap: 10px; /* 라벨과 입력 필드 간 간격 */
+  margin-bottom: 15px; /* 각 입력 컨테이너 간 아래쪽 여백 */
+}
+
+/* 라벨 스타일 */
+#kanEditModal .input-container label {
+  font-weight: bold;
+  font-size: 20px;
+  min-width: 80px;
+  text-align: right;
+}
+
+
+/* 라벨 스타일 */
+#kanEditModal label {
+  font-weight: bold;
+  font-size: 20px;
+  min-width: 80px;
+  text-align: right;
+}
+
+/* 입력 필드 (제목, 시작일, 종료일) */
+#kanEditModal .input-container input[type="text"],
+#kanEditModal .input-container input[type="date"] {
+  width: 100%; /* 입력 필드의 너비를 컨테이너에 맞게 확장 */
+  padding: 8px; /* 입력 필드 내부 여백 */
+  border: 1px solid #ccc; /* 테두리: 연한 회색 */
+  border-radius: 5px; /* 입력 필드 모서리를 둥글게 처리 */
+  box-sizing: border-box; /* 패딩과 테두리를 포함한 전체 너비 계산 */
+  font-size: 20px; /* 입력 필드 텍스트 크기 */
+}
+
+/* 인원추가 버튼 */
+#kanEditModal #kan-modal-add-assigner-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 4px 12px;
+  gap : 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#kanEditModal #kan-modal-add-assigner-btn:hover {
+  background-color: #0056b3;
+}
+
+/* 담당자 배지 영역 */
+#kanEditModal #current-assigner-area {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px 10px;
   
-  #modalBody {
-    width: 80%;
-    height: 90%;
-    padding: 30px 30px;
-    margin: 0 auto;
-    border: 1px solid #777;
-    background-color: #fff;
-  }
-  
-  #closeBtn {
-    float: right;
-    font-weight: bold;
-    color: #777;
-    font-size: 25px;
-    cursor: pointer;
-  }
+  gap: 10px;
+}
+
+/* 담당자 배지 스타일 */
+#kanEditModal #current-assigner-area span {
+  display: inline-block;
+  background-color: #d6e4ff;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+  font-weight: bold; /* 배지 텍스트를 굵게 설정 */
+}
+
+/* 텍스트 영역 (내용 입력창) */
+#kanEditModal textarea {
+  width: 100%;
+  height: 300px;
+  resize: none;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+/* 저장 및 닫기 버튼 */
+#kanEditModal #modal-actions {
+  display: flex; /* 버튼을 가로로 배치 */
+  justify-content: center; /* 버튼을 중앙 정렬 */
+  gap: 20px; /* 버튼 간 간격 */
+  margin-top: 20px;
+}
+
+/* 저장, 수정버튼 모여있는 위치 */
+#kanEditModal #modal-actions span {
+  background-color: #007bff;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#kanEditModal #modal-actions span:hover {
+  background-color: #0056b3;
+}

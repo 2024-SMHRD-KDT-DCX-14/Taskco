@@ -3,9 +3,6 @@
 
 
 //버튼 클릭 시 실행 
-teamMateListBtn = document.getElementById("teamMateList-test-btn")
-
-teamMateListBtn.addEventListener("click", () => reqTeamMateList(pjid));
 
 
 

@@ -17,6 +17,7 @@ body {
     padding-top: 50px;
     height: 100vh;
     justify-content: center;
+    background-color: transparent hsla(220, 1%, 49%, 0.336) transparent transparent;
 }
 
 h2 {
@@ -24,13 +25,13 @@ h2 {
 }
 
 #side_nav {
-	margin-top : 10px;
+   margin-top : 10px;
     position: fixed;
     left: 0;
     background: white;
     z-index: 1;
     width: 225px;
-    height: 100vh;
+    height: 840px;
     box-shadow: 5px 0 20px rgba(0, 0, 0, 0.1);
     display: grid;
     grid-template-rows: 5% 80% 5%;
@@ -58,28 +59,299 @@ div > a {
 #logout {
     margin-right: 20px;
 }
-
-.dashboard{
-	margin-top : 10px;
-	margin-left: 240px;
-	display: grid;
-	grid-template-columns: 8fr 2fr;
-	gap : 5px;
-	height: 100vh;
+/* ------------------------------------ */
+#project_control{
+   display:grid;
+   grid-template-columns: 1fr 1fr;
+   place-items: center; 
+}
+#project_control > *{
+   margin-top:10px;
+   width:auto;
+   cursor: pointer;
 }
 
-/* ------------------------------------ */
 
 .container {
-	display: flex;
-    width: 100%;
-    max-width: 1000px;
-    height: 100%;
-    max-height: 500px;
+   margin-top: 80px;
+   margin-left: 300px;
+   display: grid;
+   grid-template-columns: 5fr auto 5fr;
+    width: 1260px;
+    height: 700px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    place-items: center; 
+}
+
+.vertical-hr {
+    width: 2px; /* 세로선의 두께 */
+    height: 90%; /* 원하는 높이 (부모 컨테이너 높이에 맞춤) */
+    background-color: #5066d6; /* 선의 색상 */
+    margin: 0; /* 기본 여백 제거 */
+}
+
+.profile{
+   position: relative;
+   width :100%;
+   height: 100%
+}
+
+#edit_icon{
+   position: absolute;
+    top: 30px; /* 상단에 고정 */
+    right:50px; /* 우측에 고정 */
+    padding: 5px;
+}
+
+
+#project-list {
+    width: 100%; /* 테이블 너비를 div에 맞게 설정 */
+    border-collapse: collapse; /* 테이블 경계 중첩 제거 */
+}
+
+#project-list th, #project-list td {
+    padding: 10px;
+    border: 1px solid #ddd; /* 셀 경계 */
+}
+
+.active-project {
+    background-color: #f0f8ff; /* 활성화된 프로젝트의 배경색 강조 */
+}
+
+div::-webkit-scrollbar {
+    display: none; /* 스크롤바를 숨김 */
+}
+
+/* 모달부분 */
+
+.modal {
+   position: fixed;
+   display: none;
+   justify-content: center;
+   align-items: center;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal_body {
+   position: relative;
+   width: 500px;
+   height: 500px;
+   padding: 20px;
+   text-align: center;
+   background-color: #fff;
+   border-radius: 10px;
+   box-shadow: 0 2px 3px rgba(34, 36, 38, 0.15);
+}
+
+.close-btn {
+   position: absolute;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   margin-top: 150px;
+   cursor: pointer;
+   color: #007bff;
+}
+       
+        
+.modal_body2 {
+   position: relative;
+   width: 500px;
+   height: 500px;
+   padding: 20px;
+   text-align: center;
+   background-color: #fff;
+   border-radius: 10px;
+   box-shadow: 0 2px 3px rgba(34, 36, 38, 0.15);
+}
+
+.close-btn2 {
+   margin-top: 150px;
+   cursor: pointer;
+   color: #007bff;
+}
+/* 프로젝트 생성/추가 버튼 고정 위치 */
+
+
+
+
+
+/* .profile-name {
+   margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.profile-info {
+   margin-top: 15px;
+    width: 80%;
+   height: 100px;
+   background-color: #ddd;
+   border-radius: 8px;
+ } */
+ 
+.details {
+   width: 60%;
+   padding: 20px;
+   background-color: #cddafc;
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+}
+        
+.button {
+   color: white;
+   padding: 10px;
+   border-radius: 8px;
+   text-align: center;
+   cursor: pointer;
+   font-weight: bold;
+   border: none
+}
+
+/* Modal Overlay Background */
+.modalBoard {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6); /* 투명한 회색 배경 */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content Styling */
+.modal_board_body {
+    background: white; /* 컨텐츠 배경 */
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    overflow: auto; /* 내용이 넘치면 스크롤 */
+}
+
+/* Close Button */
+.close-btn {
+    align-self: flex-end;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none; /* 기본적으로 숨김 */
+}
+
+/* 프로필 css */
+/* 전체 프로필 컨테이너 */
+.profile {
+    width: 100%; /* 전체 프로필 카드 너비 */
+    margin: 0 auto; /* 가운데 정렬 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff; /* 배경색 */
+    border-radius: 20px; /* 카드 모서리를 둥글게 */
+    padding: 40px; /* 내부 여백 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    position: relative; /* 수정 아이콘 위치를 위해 */
+}
+
+
+/* .profile {
+   width: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} */
+
+/* 수정 아이콘 */
+#edit_icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+/* #edit_icon{
+   display:absolute;
+   width: 20px;
+    height: 20px;
+} */
+
+
+/* 프로필 이미지 컨테이너 */
+#profile-img-container img {
+    width: 300px; /* 프로필 사진 크기 */
+    height: 300px; /* 프로필 사진 크기 */
+    border-radius: 50%; /* 원형 이미지 */
+    margin-bottom: 15px; /* 이미지와 아래 텍스트 간격 */
+    margin-top:20px;
+}
+
+
+.profile img {
+   border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* 이름 스타일 */
+#profile-name-container span {
+    font-size: 40px; /* 이름 글자 크기 */
+    font-weight: bold; /* 글씨 두껍게 */
+    color: #333; /* 글씨 색상 */
+    display: block; /* 블록 요소로 변환 */
+    margin-bottom: 5px; /* 이름과 상태 메시지 간격 */
+}
+
+/* 상태 메시지 스타일 */
+#profile-status-msg-container span {
+    font-size: 25px; /* 상태 메시지 글자 크기 */
+    color: #666; /* 글씨 색상 */
+    margin-bottom: 15px; /* 상태 메시지와 이메일 간격 */
+    display: block;
+}
+
+/* 이메일 컨테이너 */
+#profile-email-container {
+    margin-top: 10px; /* 이메일 위쪽 여백 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* 아이콘과 텍스트 사이 간격 */
+    font-size: 25px; /* 이메일 텍스트 크기 */
+    color: #333; /* 이메일 색상 */
+}
+
+/* 이메일 아이콘 */
+#profile-email-container svg {
+    width: 20px; /* 아이콘 크기 */
+    height: 20px;
+    fill: #5066d6; /* 아이콘 색상 */
+}
+
+
+button:hover {
+    background-color: #4055b4; /* 버튼 호버 효과 */
 }
 

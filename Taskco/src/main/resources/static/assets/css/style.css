@@ -16,6 +16,7 @@
 }
 
 .board {
+	border : 0.3px solid;
     width: 100%;
     height: 400px;
     overflow: hidden; /* 스크롤바는 lanes 내부에서 처리 */

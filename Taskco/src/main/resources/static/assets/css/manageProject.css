@@ -1,5 +1,5 @@
 .modal {
-    display: none; /* 기본적으로 숨김 */
+    display: none; /* 기본 숨김 */
     position: fixed;
     top: 50%;
     left: 50%;
@@ -7,17 +7,19 @@
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
     width: 90%;
     max-width: 500px;
+    height: 70%; /* 높이 줄임 */
+    overflow-y: auto; /* 스크롤 활성화 */
     z-index: 1000;
     font-family: Arial, sans-serif;
 }
 
 .modal_body {
-    text-align: left;
+    padding: 20px;
+    max-height: calc(100% - 40px); /* 버튼 영역 제외한 높이 */
+    overflow-y: auto; /* 내부에서 스크롤 */
 }
-
 .modal_body h2 {
     text-align: center;
     margin-bottom: 20px;
